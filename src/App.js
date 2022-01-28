@@ -4,6 +4,7 @@ import './App.css'
 class App extends Component {
   state = {
     search: 'Hyderabad',
+    name: 'Hyderabad',
     temp: '',
     minTemp: '',
     maxTemp: '',
@@ -32,6 +33,7 @@ class App extends Component {
       ram: false,
       humidity: data.main.humidity,
       pressure: data.main.pressure,
+      name: data.name,
     })
   }
 
@@ -55,6 +57,7 @@ class App extends Component {
       ram,
       humidity,
       pressure,
+      name,
     } = this.state
     return (
       <div className="background">
@@ -67,7 +70,7 @@ class App extends Component {
             placeholder="Enter the city name"
           />
           <div className="uday">
-            <h1>{search}</h1>
+            <h1>{name}</h1>
           </div>
           {ram ? (
             <h1>The Country Not Found</h1>
