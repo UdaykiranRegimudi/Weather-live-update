@@ -37,7 +37,12 @@ class App extends Component {
 
   searchCity = event => {
     this.setState({search: event.target.value})
-    this.componentDidMount()
+  }
+
+  press = event => {
+    if (event.key === 'Enter') {
+      this.componentDidMount()
+    }
   }
 
   render() {
