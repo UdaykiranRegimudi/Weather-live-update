@@ -2,31 +2,30 @@ import {Component} from 'react'
 
 import './App.css'
 
+const usha = true
+
 class App extends Component {
   state = {
-    search: 'Hyderabad',
-    name: 'Hyderabad',
-    temp: '',
-    minTemp: '',
-    maxTemp: '',
-    humidity: '',
-    pressure: '',
+    search: '',
+    uday: [],
   }
 
   componentDidMount() {
-    this.getDetails()
+    localStorage.setItem('search1', '')
   }
 
   getDetails = async () => {
-    const {search} = this.state
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${search}&appid=c3e89bc97eb6bd54a4b2b7ea34b98c35`
+    const search1 = localStorage.getItem('search1')
+    console.log(search1)
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${search1}&appid=c3e89bc97eb6bd54a4b2b7ea34b98c35`
     const response = await fetch(url)
     const data = await response.json()
-    console.log(data)
-    if (data.message === 'city not found') {
-      this.setState({ram: true, name: ''})
+    console.log(response.ok)
+
+    if (response.ok === false) {
+      localStorage.setItem('object', true)
     }
-    this.setState({
+    const ram = {
       temp: data.main.temp,
       minTemp: data.main.temp_min,
       maxTemp: data.main.temp_max,
@@ -35,7 +34,9 @@ class App extends Component {
       humidity: data.main.humidity,
       pressure: data.main.pressure,
       name: data.name,
-    })
+    }
+    localStorage.setItem('object', JSON.stringify(ram))
+    this.setState({uday: ram})
   }
 
   searchCity = event => {
@@ -44,12 +45,15 @@ class App extends Component {
 
   press = event => {
     if (event.key === 'Enter') {
-      this.componentDidMount()
-      this.setState({search: ''})
+      const {search} = this.state
+      localStorage.removeItem('object')
+      localStorage.setItem('search1', search)
+      this.getDetails()
     }
   }
 
   render() {
+    const weatherData = localStorage.getItem('object')
     const {
       temp,
       minTemp,
@@ -59,7 +63,8 @@ class App extends Component {
       humidity,
       pressure,
       name,
-    } = this.state
+    } = JSON.parse(weatherData)
+
     return (
       <div className="background">
         <div className="background1">
