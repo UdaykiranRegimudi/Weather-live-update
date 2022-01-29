@@ -1,4 +1,5 @@
 import {Component} from 'react'
+
 import './App.css'
 
 class App extends Component {
@@ -23,7 +24,7 @@ class App extends Component {
     const data = await response.json()
     console.log(data)
     if (data.message === 'city not found') {
-      this.setState({ram: true})
+      this.setState({ram: true, name: ''})
     }
     this.setState({
       temp: data.main.temp,
@@ -44,12 +45,12 @@ class App extends Component {
   press = event => {
     if (event.key === 'Enter') {
       this.componentDidMount()
+      this.setState({search: ''})
     }
   }
 
   render() {
     const {
-      search,
       temp,
       minTemp,
       maxTemp,
