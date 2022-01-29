@@ -23,11 +23,13 @@
   padding: 50px;
   font-family: 'sans-serif';
   font-size: 20px;
+
 }
 .button {
   background-color: green;
   color: white;
   height: 30px;
+
   width: 10vw;
   border-radius: 5px;
   border-width: 0px;

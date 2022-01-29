@@ -11,7 +11,7 @@ class App extends Component {
 
   getDetails = async () => {
     const {search} = this.state
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${search}&appid=c3e89bc97eb6bd54a4b2b7ea34b98c35`
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=c3e89bc97eb6bd54a4b2b7ea34b98c35`
     const response = await fetch(url)
     const data = await response.json()
     console.log(data)
