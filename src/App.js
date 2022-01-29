@@ -64,7 +64,7 @@ class App extends Component {
           />
 
           {ram === null ? (
-            <h1>The Country Not Found</h1>
+            <h1>The City Not Found</h1>
           ) : (
             <>
               <div className="uday">
