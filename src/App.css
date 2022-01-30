@@ -46,3 +46,38 @@ body {
   justify-content: space-around;
   color: white;
 }
+
+.weatherImage {
+  height: 22vh;
+  width: 10vw;
+}
+
+@media screen and (min-width: 200px) and (max-width: 950px) {
+  .background1 {
+    background-image: linear-gradient(
+      to right top,
+      #051937,
+      #004d7a,
+      #008793,
+      #00bf72,
+      #a8eb12
+    );
+    padding: 50px;
+
+    background-size: cover;
+    width: 90vw;
+    border-radius: 10px;
+    text-align: center;
+    color: yellow;
+  }
+  .input {
+    height: 3vh;
+    width: 40vw;
+    border-radius: 5px;
+    text-align: center;
+  }
+  .weatherImage {
+    height: 30vh;
+    width: 20vw;
+  }
+}

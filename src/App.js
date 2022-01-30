@@ -12,7 +12,9 @@ class App extends Component {
   getDetails = async () => {
     const {search} = this.state
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=c3e89bc97eb6bd54a4b2b7ea34b98c35`
+
     const response = await fetch(url)
+
     const data = await response.json()
     console.log(data)
     if (response.ok === false) {
@@ -27,6 +29,7 @@ class App extends Component {
       localStorage.setItem('humidity', data.main.humidity)
       localStorage.setItem('pressure', data.main.pressure)
       localStorage.setItem('name', data.name)
+      localStorage.setItem('icon', data.weather[0].icon)
       this.setState({name: data.name})
     }
   }
@@ -51,7 +54,8 @@ class App extends Component {
     const search = localStorage.getItem('search')
     const humidity = localStorage.getItem('humidity')
     const ram = localStorage.getItem('ram')
-    console.log(temp)
+    const icon = localStorage.getItem('icon')
+
     return (
       <div className="background">
         <div className="background1">
@@ -71,6 +75,11 @@ class App extends Component {
                 <h1>{name}</h1>
               </div>
               <h1>{temp} F</h1>
+              <img
+                src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+                alt={name}
+                className="weatherImage"
+              />
               <h2>{weather}</h2>
               <p>Coldest Temperature: {minTemp} F </p>
               <p>Warmest Temperature: {maxTemp} F </p>
